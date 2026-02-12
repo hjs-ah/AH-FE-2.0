@@ -93,8 +93,18 @@ function loadMediumArticles() {
     `;
 }
 
-// Load articles immediately when page loads
+// Load Medium articles immediately when page loads
 loadMediumArticles();
+
+// Trigger fade-in animations on page load
+window.addEventListener('DOMContentLoaded', () => {
+    // Add animate class to all fade-in elements
+    document.querySelectorAll('.fade-in-left').forEach((element, index) => {
+        setTimeout(() => {
+            element.classList.add('animate');
+        }, 50); // Small delay to ensure CSS is loaded
+    });
+});
 
 // Smooth Scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
