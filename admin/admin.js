@@ -1,5 +1,15 @@
+// Check if Firebase is loaded
+if (typeof firebase === 'undefined') {
+    console.error('Firebase SDK not loaded!');
+    alert('Error: Firebase SDK failed to load. Please check your internet connection and refresh the page.');
+}
+
+console.log('Admin panel script loaded');
+
 // Get Firebase services
 const { auth, db, storage } = window.firebaseApp;
+
+console.log('Firebase services loaded:', { auth: !!auth, db: !!db, storage: !!storage });
 
 // DOM Elements
 const loginScreen = document.getElementById('loginScreen');
@@ -30,11 +40,17 @@ loginForm.addEventListener('submit', async (e) => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     
+    console.log('Attempting login with:', email);
+    loginError.textContent = 'Signing in...';
+    
     try {
-        await auth.signInWithEmailAndPassword(email, password);
+        const userCredential = await auth.signInWithEmailAndPassword(email, password);
+        console.log('Login successful:', userCredential.user.email);
         loginError.textContent = '';
     } catch (error) {
-        loginError.textContent = error.message;
+        console.error('Login error:', error);
+        loginError.textContent = `Error: ${error.message}`;
+        loginError.style.display = 'block';
     }
 });
 
