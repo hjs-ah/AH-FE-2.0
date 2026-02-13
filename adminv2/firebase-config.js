@@ -8,13 +8,23 @@ const firebaseConfig = {
   appId: "1:225964347020:web:87ebe0ffb82fc492daf5a9"
 };
 
+console.log('Initializing Firebase...');
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+console.log('Firebase initialized successfully');
 
 // Initialize services
 const auth = firebase.auth();
 const db = firebase.firestore();
 const storage = firebase.storage();
+
+console.log('Firebase services ready:', {
+  auth: !!auth,
+  db: !!db,
+  storage: !!storage
+});
 
 // Export for use in other files
 window.firebaseApp = {
