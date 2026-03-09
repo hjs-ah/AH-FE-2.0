@@ -258,7 +258,7 @@ body {
     grid-template-columns: 160px 1fr;
     gap: 2rem;
     align-items: start;
-    margin-bottom: 4rem;
+    margin-bottom: 1.25rem;
 }
 
 .section-label-col {
