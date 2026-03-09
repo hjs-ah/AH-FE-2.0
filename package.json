@@ -3,8 +3,8 @@
   "version": "2.0.0",
   "description": "Antone Holmes Portfolio with Notion CMS",
   "scripts": {
-    "dev": "node api/build-data.js && python -m http.server 8000",
-    "build": "node api/build-data.js"
+    "dev": "node build-data.js && python -m http.server 8000",
+    "build": "node build-data.js"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.15"

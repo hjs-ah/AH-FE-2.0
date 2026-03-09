@@ -132,8 +132,8 @@ async function buildData() {
     lastUpdated: new Date().toISOString(),
   };
 
-  // Write to JSON file
-  const dataPath = path.join(__dirname, '..', 'data.json');
+  // Write to JSON file in same directory
+  const dataPath = path.join(__dirname, 'data.json');
   fs.writeFileSync(dataPath, JSON.stringify(data, null, 2));
 
   console.log('✅ Data fetched and saved to data.json');
