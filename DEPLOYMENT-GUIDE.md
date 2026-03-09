@@ -1,171 +1,176 @@
-# 🚀 DEPLOYMENT STEPS - Follow These Exactly
+# 🚀 FRESH DEPLOYMENT - All Files Included
 
-## Step 1: Upload New Files to GitHub
+## What's in This Package
 
-You need to add these **3 NEW files** to your repo:
+✅ **7 Core Files** - Everything you need for the portfolio with Notion CMS
 
-1. **`package.json`** → Root of repo
-2. **`vercel.json`** → Root of repo  
-3. **`api/build-data.js`** → Create `api` folder, put this file inside
+## File Checklist
 
-And **REPLACE** this file:
-4. **`script.js`** → Replace your existing script.js with the new one
+Upload ALL of these files to the ROOT of your GitHub repo:
 
-### How to Upload:
+- [ ] `index.html` - Main website page
+- [ ] `styles.css` - All styling
+- [ ] `script.js` - JavaScript + Notion integration
+- [ ] `favicon.svg` - "AH" favicon
+- [ ] `package.json` - Dependencies
+- [ ] `vercel.json` - Vercel configuration
+- [ ] `build-data.js` - Notion data fetcher
 
-**Option A: Via GitHub Website**
-1. Go to your repo: `https://github.com/yourusername/AH-FE-2.0`
-2. Click "Add file" → "Upload files"
-3. Drag the 3 new files + updated script.js
-4. Scroll down, click "Commit changes"
+## Additional Files You Should Keep
 
-**Option B: Via Terminal (if you cloned locally)**
-```bash
-cd /path/to/AH-FE-2.0
-# Copy new files to repo
-# Then:
-git add .
-git commit -m "Add Notion CMS integration"
-git push
-```
+These are already in your repo - keep them:
+
+- `newman_thumb.jpg` - Book cover image
+- `ProHeadshot_web-copy.jpg` - Profile photo
+- `README.md` - (optional, can replace with this one)
+
+## Files You Can DELETE
+
+Delete these if they exist:
+
+- ❌ `api/` folder (entire folder and contents)
+- ❌ `firebase-test.html` (not needed)
+- ❌ `admin/` and `adminv2/` folders (old admin attempts)
+- ❌ Any old `build-data.js` in wrong locations
 
 ---
 
-## Step 2: Configure Vercel
+## Step-by-Step Deployment
 
-Now go back to your Vercel tab (the one asking for settings).
+### 1. Clean Your GitHub Repo
 
-### Environment Variables - Add These:
+1. Go to: `https://github.com/hjs-ah/AH-FE-2.0`
+2. Delete EVERYTHING except:
+   - `newman_thumb.jpg`
+   - `ProHeadshot_web-copy.jpg`
+3. Your repo should be almost empty
 
-Click "Environment Variables" and add each one:
+### 2. Upload Fresh Files
+
+1. Click "Add file" → "Upload files"
+2. Drag ALL 7 files from this package:
+   - `index.html`
+   - `styles.css`
+   - `script.js`
+   - `favicon.svg`
+   - `package.json`
+   - `vercel.json`
+   - `build-data.js`
+3. Commit changes
+
+### 3. Verify File Structure
+
+Your repo should look like this:
 
 ```
-Name: NOTION_API_KEY
-Value: [Paste your Notion integration token from Step 1 of Notion setup]
-
-Name: NOTION_ARTICLES_DB  
-Value: [Paste your Articles database ID]
-
-Name: NOTION_CREATIONS_DB
-Value: [Paste your Recent Creations database ID]
-
-Name: NOTION_BOOKS_DB
-Value: [Paste your Books database ID]
-
-Name: NOTION_SETTINGS_ID
-Value: [Paste your Site Settings page ID]
+AH-FE-2.0/
+├── build-data.js
+├── favicon.svg
+├── index.html
+├── newman_thumb.jpg
+├── package.json
+├── ProHeadshot_web-copy.jpg
+├── README.md (optional)
+├── script.js
+├── styles.css
+└── vercel.json
 ```
 
-### Build Settings:
+**NO FOLDERS!** Everything in the root.
 
+### 4. Set Vercel Environment Variables
+
+In Vercel, add these 5 variables:
+
+```
+NOTION_API_KEY = secret_your_token_here
+NOTION_ARTICLES_DB = your_articles_db_id
+NOTION_CREATIONS_DB = your_creations_db_id
+NOTION_BOOKS_DB = your_books_db_id
+NOTION_SETTINGS_ID = your_settings_page_id
+```
+
+### 5. Deploy on Vercel
+
+Settings:
 - **Framework Preset:** Other
 - **Root Directory:** `./`
 - **Build Command:** `npm run build`
 - **Output Directory:** `.`
 - **Install Command:** `npm install`
 
----
-
-## Step 3: Deploy! 🎉
-
-1. Click the **"Deploy"** button
-2. Wait 1-2 minutes while Vercel:
-   - Installs dependencies
-   - Fetches your Notion data
-   - Builds the site
-3. You'll get a URL like: `https://your-site.vercel.app`
+Click **"Deploy"**!
 
 ---
 
-## Step 4: Test It
+## What Happens During Build
 
-1. Visit your new Vercel URL
-2. Check that:
-   - Articles are showing
-   - Gallery images display
-   - Books section looks good
-   - Profile info is correct
-
----
-
-## Step 5: Update Content (Future)
-
-When you want to update your site:
-
-1. **Edit your Notion databases**
-   - Add a new article
-   - Change a gallery image  
-   - Update book info
-   - Whatever you need!
-
-2. **Redeploy on Vercel**
-   - Go to Vercel dashboard
-   - Click your project
-   - Click "Deployments" tab
-   - Click the "..." menu on latest deployment
-   - Click "Redeploy"
-
-3. **Site updates in ~30 seconds!**
+1. Vercel runs `npm install` → Installs @notionhq/client
+2. Vercel runs `npm run build` → Runs `node build-data.js`
+3. `build-data.js` connects to Notion → Fetches your content
+4. Creates `data.json` with all your data
+5. Site goes live!
 
 ---
 
 ## Troubleshooting
 
-**❌ Build fails?**
-- Double-check all 5 environment variables are set correctly
-- Make sure database IDs don't have extra spaces
-- Verify Notion integration token starts with `secret_`
+**Build fails with "Cannot find module"?**
+- Check that `build-data.js` is in ROOT (not in a folder)
+- Check that `package.json` is in ROOT
+- Verify no `api/` folder exists
 
-**❌ Data not showing?**
-- Check that Notion integration is connected to all databases
-- Verify each database has at least 1 "Published" item
-- Check that Order numbers are set (1, 2, 3...)
+**"NOTION_API_KEY is not defined"?**
+- Double-check environment variables in Vercel
+- Make sure they're spelled exactly right
+- No extra spaces in the values
 
-**❌ Images not loading?**
-- Make sure image URLs in Notion are publicly accessible
-- GitHub URLs should be raw: `https://raw.githubusercontent.com/...`
-- Or use your GitHub Pages URL: `https://yourusername.github.io/repo/image.jpg`
+**Data not showing?**
+- Check Notion databases have items with Status = "Published"
+- Verify integration is connected to all databases
+- Check Order numbers are set (1, 2, 3...)
 
 ---
 
-## Need Help?
+## After Successful Deployment
 
-If something breaks:
-1. Check Vercel build logs (shows errors)
+### Update Your Notion Link
+
+In `script.js`, find line ~280 and update:
+
+```javascript
+window.open('https://notion.so/your-workspace/Portfolio-Content-abc123', '_blank');
+```
+
+Replace with your actual Notion page URL.
+
+### Test Everything
+
+- [ ] Articles showing?
+- [ ] Gallery images loading?
+- [ ] Books section working?
+- [ ] Profile photo visible?
+- [ ] Social links working?
+- [ ] Theme toggle working?
+- [ ] Copyright year correct?
+
+### Update Content
+
+1. Edit Notion databases
+2. In Vercel: Deployments → ... menu → Redeploy
+3. Wait 30 seconds
+4. Refresh your site!
+
+---
+
+## Support
+
+If you still get errors:
+1. Check Vercel build logs
 2. Verify all 5 environment variables
-3. Make sure GitHub has all 4 files uploaded
-4. Check that Notion databases have "Published" items
+3. Confirm file structure matches above
+4. Make sure Notion integration has database access
 
 ---
 
-## Summary of What You're Uploading:
-
-```
-Your GitHub Repo Should Have:
-├── api/
-│   └── build-data.js          ← NEW
-├── admin/                      (existing folders)
-├── adminv2/                    (existing folders)
-├── index.html                  (existing)
-├── styles.css                  (existing)
-├── script.js                   ← REPLACE with new version
-├── favicon.svg                 (existing)
-├── newman_thumb.jpg            (existing)
-├── ProHeadshot_web-copy.jpg    (existing)
-├── package.json                ← NEW
-├── vercel.json                 ← NEW
-├── firebase-test.html          (existing, can delete later)
-└── README.md                   (existing, can replace with new one)
-```
-
-**Files to Download and Upload:**
-1. ✅ package.json (NEW)
-2. ✅ vercel.json (NEW)
-3. ✅ api/build-data.js (NEW - create api folder first!)
-4. ✅ script.js (REPLACE existing)
-5. ✅ README.md (OPTIONAL - better docs)
-
----
-
-**Once deployed, you'll never need to touch code again!** 
-Just edit Notion and redeploy. 🎯
+**You're ready to deploy! 🎉**
