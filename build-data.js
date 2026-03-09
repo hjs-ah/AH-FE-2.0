@@ -97,16 +97,25 @@ async function fetchBooks() {
 
 async function fetchSettings() {
   try {
-    const response = await notion.pages.retrieve({
-      page_id: process.env.NOTION_SETTINGS_ID,
+    // Fetch from database instead of page
+    const response = await notion.databases.query({
+      database_id: process.env.NOTION_SETTINGS_ID,
     });
 
+    // Get the first (and should be only) row
+    if (response.results.length === 0) {
+      console.warn('No settings found in database');
+      return {};
+    }
+
+    const page = response.results[0];
+
     return {
-      profileImageUrl: response.properties['Profile Image URL']?.url || '',
-      linkedinUrl: response.properties['LinkedIn URL']?.url || '',
-      behanceUrl: response.properties['Behance URL']?.url || '',
-      mediumUrl: response.properties['Medium URL']?.url || '',
-      email: response.properties['Email']?.email || '',
+      profileImageUrl: page.properties['Profile Image URL']?.url || '',
+      linkedinUrl: page.properties['LinkedIn URL']?.url || '',
+      behanceUrl: page.properties['Behance URL']?.url || '',
+      mediumUrl: page.properties['Medium URL']?.url || '',
+      email: page.properties['Email']?.email || '',
     };
   } catch (error) {
     console.error('Error fetching settings:', error);
