@@ -25,12 +25,17 @@ async function fetchArticles() {
       ]
     });
 
-    return response.results.map(page => ({
-      title: page.properties.Title?.title[0]?.plain_text || '',
-      url: page.properties.URL?.url || '',
-      description: page.properties.Description?.rich_text[0]?.plain_text || '',
-      publishedDate: page.properties.Published?.date?.start || '',
-    }));
+    return response.results.map(page => {
+      // Debug logging
+      console.log('Article URL property:', JSON.stringify(page.properties.URL, null, 2));
+      
+      return {
+        title: page.properties.Title?.title[0]?.plain_text || '',
+        url: page.properties.URL?.url || '',
+        description: page.properties.Description?.rich_text[0]?.plain_text || '',
+        publishedDate: page.properties.Published?.date?.start || '',
+      };
+    });
   } catch (error) {
     console.error('Error fetching articles:', error);
     return [];
