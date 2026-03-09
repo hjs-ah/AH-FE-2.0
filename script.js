@@ -12,16 +12,158 @@ themeToggle.addEventListener('click', () => {
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
 });
 
-// Medium Articles - Using static content for reliability
-function loadMediumArticles() {
+// Load content from Notion data
+async function loadNotionContent() {
+    try {
+        const response = await fetch('/data.json');
+        const data = await response.json();
+        
+        // Load articles
+        if (data.articles && data.articles.length > 0) {
+            loadArticles(data.articles);
+        }
+        
+        // Load creations
+        if (data.creations && data.creations.length > 0) {
+            loadCreations(data.creations);
+        }
+        
+        // Load books
+        if (data.books && data.books.length > 0) {
+            loadBooks(data.books);
+        }
+        
+        // Load settings (profile image, social links)
+        if (data.settings) {
+            loadSettings(data.settings);
+        }
+        
+    } catch (error) {
+        console.error('Error loading Notion content:', error);
+        // Fallback to hardcoded content if Notion fails
+        loadFallbackContent();
+    }
+}
+
+function loadArticles(articles) {
     const articlesContainer = document.getElementById('medium-articles');
     
-    // Display your recent articles directly (more reliable than RSS feed)
+    articlesContainer.innerHTML = articles.map(article => {
+        const date = new Date(article.publishedDate);
+        const formattedDate = date.toLocaleDateString('en-US', { 
+            month: '2-digit', 
+            day: '2-digit', 
+            year: 'numeric' 
+        });
+        
+        return `
+            <a href="${article.url}" target="_blank" class="article-link">
+                <article class="article-item">
+                    <h3 class="article-title">${article.title}</h3>
+                    <p class="article-description">${article.description}</p>
+                    <div class="article-meta">
+                        <div style="display: flex; align-items: center; gap: 0.25rem;">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                                <path d="M3 10h18"></path>
+                            </svg>
+                            <span>${formattedDate}</span>
+                        </div>
+                        <div class="article-read-more" style="display: flex; align-items: center; gap: 0.25rem;">
+                            <span>Read Article</span>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </article>
+            </a>
+        `;
+    }).join('');
+}
+
+function loadCreations(creations) {
+    const creationsContainer = document.querySelector('.section-two-col:nth-of-type(3) .gallery-grid');
+    if (!creationsContainer) return;
+    
+    creationsContainer.innerHTML = creations.map(creation => `
+        <div class="gallery-item">
+            <img src="${creation.imageUrl}" alt="${creation.name}">
+            <div class="gallery-overlay">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+                    <line x1="11" x2="11" y1="8" y2="14"></line>
+                    <line x1="8" x2="14" y1="11" y2="11"></line>
+                </svg>
+            </div>
+        </div>
+    `).join('');
+    
+    // Re-attach modal handlers
+    attachModalHandlers();
+}
+
+function loadBooks(books) {
+    const booksContainer = document.querySelector('.section-two-col:nth-of-type(4) .gallery-grid');
+    if (!booksContainer) return;
+    
+    booksContainer.innerHTML = books.map(book => `
+        <div class="gallery-item book-item">
+            <img src="${book.coverImageUrl}" alt="${book.title}">
+            <div class="gallery-overlay book-overlay">
+                <p class="book-overlay-title">${book.title}</p>
+                <p class="book-overlay-author">${book.author}</p>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 3h6v6"></path>
+                    <path d="M10 14 21 3"></path>
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                </svg>
+            </div>
+        </div>
+    `).join('');
+}
+
+function loadSettings(settings) {
+    // Update profile image if provided
+    if (settings.profileImageUrl) {
+        const profileImg = document.querySelector('.profile-image');
+        if (profileImg) profileImg.src = settings.profileImageUrl;
+    }
+    
+    // Update social links if provided
+    const socialLinks = {
+        medium: settings.mediumUrl,
+        linkedin: settings.linkedinUrl,
+        behance: settings.behanceUrl,
+    };
+    
+    Object.entries(socialLinks).forEach(([platform, url]) => {
+        if (url) {
+            document.querySelectorAll(`a[href*="${platform}"]`).forEach(link => {
+                link.href = url;
+            });
+        }
+    });
+    
+    // Update email
+    if (settings.email) {
+        const emailLink = document.querySelector('a[href^="mailto:"]');
+        if (emailLink) emailLink.href = `mailto:${settings.email}`;
+    }
+}
+
+function loadFallbackContent() {
+    // Keep existing hardcoded content as fallback
+    const articlesContainer = document.getElementById('medium-articles');
     articlesContainer.innerHTML = `
         <a href="https://medium.com/@antoneh/beyond-individual-achievement-reimagining-education-as-community-liberation-5c593699525f" target="_blank" class="article-link">
             <article class="article-item">
                 <h3 class="article-title">Beyond Individual Achievement: Reimagining Education as Community Liberation</h3>
-                <p class="article-description">Photo by Muhammad-Taha Ibrahim on Unsplash. Frederick Douglass understood what modern neuroscience now confirms: the mind under duress cannot fully embrace learning...</p>
+                <p class="article-description">Photo by Muhammad-Taha Ibrahim on Unsplash. Frederick Douglass understood what modern neuroscience now confirms...</p>
                 <div class="article-meta">
                     <div style="display: flex; align-items: center; gap: 0.25rem;">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -45,7 +187,7 @@ function loadMediumArticles() {
         <a href="https://medium.com/@antoneh/surviving-the-pain-patience-bond-through-peace-13f45a23b565" target="_blank" class="article-link">
             <article class="article-item">
                 <h3 class="article-title">Surviving the Pain-Patience Bond through Peace</h3>
-                <p class="article-description">I've come to the realization that pain is the byproduct of patience. They are inseparable. Like instruments in a symphony, they blend into a harmonious whole...</p>
+                <p class="article-description">I've come to the realization that pain is the byproduct of patience...</p>
                 <div class="article-meta">
                     <div style="display: flex; align-items: center; gap: 0.25rem;">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -69,7 +211,7 @@ function loadMediumArticles() {
         <a href="https://medium.com/transforming-the-mans-mind/4-words-to-traverse-stress-paralysis-31184d7cfbf9" target="_blank" class="article-link">
             <article class="article-item">
                 <h3 class="article-title">4 Words to Traverse Stress Paralysis</h3>
-                <p class="article-description">Stress — that unwelcome life companion — may be nature's most potent medicine: bitter yet transformative. Repeatedly paralyzed by its grip, I discovered that breaking free is vital...</p>
+                <p class="article-description">Stress — that unwelcome life companion — may be nature's most potent medicine...</p>
                 <div class="article-meta">
                     <div style="display: flex; align-items: center; gap: 0.25rem;">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -93,8 +235,16 @@ function loadMediumArticles() {
     `;
 }
 
-// Load Medium articles immediately when page loads
-loadMediumArticles();
+// Load content immediately when page loads
+loadNotionContent();
+
+// Set current year for copyright
+document.addEventListener('DOMContentLoaded', () => {
+    const yearElement = document.getElementById('current-year');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+});
 
 // Trigger fade-in animations on page load
 window.addEventListener('DOMContentLoaded', () => {
@@ -102,7 +252,7 @@ window.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.fade-in-left').forEach((element, index) => {
         setTimeout(() => {
             element.classList.add('animate');
-        }, 50); // Small delay to ensure CSS is loaded
+        }, 50);
     });
 });
 
@@ -120,61 +270,65 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Gallery item click handlers (placeholder for V2 backend integration)
-document.querySelectorAll('.gallery-item').forEach(item => {
-    item.addEventListener('click', function() {
-        console.log('Gallery item clicked - ready for backend integration');
-    });
-});
-
 // Image Modal functionality for "Recent Creations" section only
 const imageModal = document.getElementById('imageModal');
 const modalImage = document.getElementById('modalImage');
 const modalClose = document.getElementById('modalClose');
 
-// Get all gallery items in "Recent Creations" section (not "What I'm Reading")
-const recentCreationsSection = document.querySelectorAll('.section-two-col')[2]; // 3rd section is Recent Creations
-const creationItems = recentCreationsSection ? recentCreationsSection.querySelectorAll('.gallery-item') : [];
+function attachModalHandlers() {
+    const recentCreationsSection = document.querySelectorAll('.section-two-col')[2];
+    const creationItems = recentCreationsSection ? recentCreationsSection.querySelectorAll('.gallery-item') : [];
 
-creationItems.forEach(item => {
-    item.addEventListener('click', function(e) {
-        e.preventDefault();
-        const img = this.querySelector('img');
-        if (img) {
-            modalImage.src = img.src;
-            imageModal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
-        }
+    creationItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            const img = this.querySelector('img');
+            if (img) {
+                modalImage.src = img.src;
+                imageModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
     });
-});
+}
+
+// Initial attachment
+attachModalHandlers();
 
 // Close modal when clicking the X button
-modalClose.addEventListener('click', function() {
-    imageModal.classList.remove('active');
-    document.body.style.overflow = ''; // Restore scrolling
-});
-
-// Close modal when clicking outside the image
-imageModal.addEventListener('click', function(e) {
-    if (e.target === imageModal) {
+if (modalClose) {
+    modalClose.addEventListener('click', function() {
         imageModal.classList.remove('active');
         document.body.style.overflow = '';
-    }
-});
+    });
+}
+
+// Close modal when clicking outside the image
+if (imageModal) {
+    imageModal.addEventListener('click', function(e) {
+        if (e.target === imageModal) {
+            imageModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+}
 
 // Close modal with Escape key
 document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && imageModal.classList.contains('active')) {
+    if (e.key === 'Escape' && imageModal && imageModal.classList.contains('active')) {
         imageModal.classList.remove('active');
         document.body.style.overflow = '';
     }
 });
 
-// Admin login click handler
+// Admin login - opens Notion workspace for content editing
 const adminLogin = document.getElementById('admin-login');
 if (adminLogin) {
     adminLogin.addEventListener('click', function(e) {
-        console.log('Admin login clicked - ready for Firebase integration');
+        e.preventDefault();
+        // Replace this URL with your actual Notion workspace URL
+        // Example: https://notion.so/your-workspace/Portfolio-Content-abc123
+        window.open('https://notion.so', '_blank');
     });
 }
 
