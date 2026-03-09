@@ -15,12 +15,18 @@ themeToggle.addEventListener('click', () => {
 // Load content from Notion data
 async function loadNotionContent() {
     try {
+        console.log('🔄 Attempting to load Notion content...');
         const response = await fetch('/data.json');
+        console.log('📡 Response status:', response.status);
         const data = await response.json();
+        console.log('📦 Data loaded:', data);
         
         // Load articles
         if (data.articles && data.articles.length > 0) {
+            console.log('✅ Loading articles:', data.articles.length);
             loadArticles(data.articles);
+        } else {
+            console.log('❌ No articles found in data');
         }
         
         // Load creations
@@ -39,7 +45,7 @@ async function loadNotionContent() {
         }
         
     } catch (error) {
-        console.error('Error loading Notion content:', error);
+        console.error('❌ Error loading Notion content:', error);
         // Fallback to hardcoded content if Notion fails
         loadFallbackContent();
     }
