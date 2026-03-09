@@ -54,7 +54,11 @@ async function loadNotionContent() {
 function loadArticles(articles) {
     const articlesContainer = document.getElementById('medium-articles');
     
+    console.log('📝 loadArticles called with:', articles);
+    
     articlesContainer.innerHTML = articles.map(article => {
+        console.log('🔗 Article URL being used:', article.url);
+        
         const date = new Date(article.publishedDate);
         const formattedDate = date.toLocaleDateString('en-US', { 
             month: '2-digit', 
@@ -89,6 +93,8 @@ function loadArticles(articles) {
             </a>
         `;
     }).join('');
+    
+    console.log('✅ Articles HTML generated, container updated');
 }
 
 function loadCreations(creations) {
