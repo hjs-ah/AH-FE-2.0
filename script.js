@@ -146,7 +146,7 @@ function loadSettings(settings) {
         if (profileImg) profileImg.src = settings.profileImageUrl;
     }
     
-    // Update social links if provided
+    // Update social links if provided - ONLY in header, not article links
     const socialLinks = {
         medium: settings.mediumUrl,
         linkedin: settings.linkedinUrl,
@@ -155,7 +155,8 @@ function loadSettings(settings) {
     
     Object.entries(socialLinks).forEach(([platform, url]) => {
         if (url) {
-            document.querySelectorAll(`a[href*="${platform}"]`).forEach(link => {
+            // Only update social links in header/footer, not article content
+            document.querySelectorAll(`.social-link[href*="${platform}"], .connect-card[href*="${platform}"]`).forEach(link => {
                 link.href = url;
             });
         }
