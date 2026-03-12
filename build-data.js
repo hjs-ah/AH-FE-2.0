@@ -114,6 +114,9 @@ async function fetchSettings() {
     }
 
     const page = response.results[0];
+    
+    // Debug: Log the Profile Image URL property
+    console.log('🖼️ Profile Image URL property:', JSON.stringify(page.properties['Profile Image URL'], null, 2));
 
     // Handle tagline - Notion Text property
     let tagline = '';
