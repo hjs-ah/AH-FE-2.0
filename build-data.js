@@ -115,17 +115,21 @@ async function fetchSettings() {
 
     const page = response.results[0];
 
-    // Handle tagline - could be text, rich_text, or title
+    // Handle tagline - Notion Text property
     let tagline = '';
     const taglineProp = page.properties['Tagline'];
+    console.log('📝 Tagline property from Notion:', JSON.stringify(taglineProp, null, 2));
+    
     if (taglineProp) {
-      if (taglineProp.rich_text && taglineProp.rich_text[0]) {
+      // Text property in Notion databases returns as rich_text array
+      if (taglineProp.rich_text && taglineProp.rich_text.length > 0) {
         tagline = taglineProp.rich_text[0].plain_text;
-      } else if (taglineProp.title && taglineProp.title[0]) {
-        tagline = taglineProp.title[0].plain_text;
-      } else if (taglineProp.plain_text) {
-        tagline = taglineProp.plain_text;
+        console.log('✅ Tagline extracted:', tagline);
+      } else {
+        console.log('⚠️ Tagline property exists but has no rich_text');
       }
+    } else {
+      console.log('❌ No Tagline property found in Notion');
     }
 
     return {
