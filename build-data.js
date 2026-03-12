@@ -115,9 +115,22 @@ async function fetchSettings() {
 
     const page = response.results[0];
 
+    // Handle tagline - could be text, rich_text, or title
+    let tagline = '';
+    const taglineProp = page.properties['Tagline'];
+    if (taglineProp) {
+      if (taglineProp.rich_text && taglineProp.rich_text[0]) {
+        tagline = taglineProp.rich_text[0].plain_text;
+      } else if (taglineProp.title && taglineProp.title[0]) {
+        tagline = taglineProp.title[0].plain_text;
+      } else if (taglineProp.plain_text) {
+        tagline = taglineProp.plain_text;
+      }
+    }
+
     return {
       profileImageUrl: page.properties['Profile Image URL']?.url || '',
-      tagline: page.properties['Tagline']?.rich_text[0]?.plain_text || '',
+      tagline: tagline,
       linkedinUrl: page.properties['LinkedIn URL']?.url || '',
       behanceUrl: page.properties['Behance URL']?.url || '',
       figmaUrl: page.properties['Figma URL']?.url || '',

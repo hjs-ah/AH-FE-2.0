@@ -140,10 +140,26 @@ function loadBooks(books) {
 }
 
 function loadSettings(settings) {
+    console.log('🎯 Loading settings:', settings);
+    
     // Update profile image if provided
     if (settings.profileImageUrl) {
         const profileImg = document.querySelector('.profile-image');
         if (profileImg) profileImg.src = settings.profileImageUrl;
+    }
+    
+    // Update tagline if provided
+    if (settings.tagline) {
+        console.log('✏️ Updating tagline to:', settings.tagline);
+        const taglineElement = document.getElementById('profile-tagline');
+        if (taglineElement) {
+            taglineElement.textContent = settings.tagline;
+            console.log('✅ Tagline updated');
+        } else {
+            console.log('❌ Tagline element not found');
+        }
+    } else {
+        console.log('⚠️ No tagline in settings');
     }
     
     // Update social links if provided - ONLY in header, not article links
