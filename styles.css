@@ -128,8 +128,8 @@ body {
     grid-template-columns: 160px 1fr;
     gap: 2rem;
     align-items: center;
-    margin-bottom: 5rem;
-    padding-top: 3rem;
+    margin-bottom: 1rem;
+    padding-top: 4rem;
 }
 
 .profile-image-wrapper {
@@ -246,10 +246,10 @@ body {
 
 /* Sections Container */
 .sections-container {
-    margin-top: 4rem;
+    margin-top: 3rem;
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 2rem;
 }
 
 /* Two Column Section Layout */
