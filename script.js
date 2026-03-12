@@ -151,6 +151,7 @@ function loadSettings(settings) {
         medium: settings.mediumUrl,
         linkedin: settings.linkedinUrl,
         behance: settings.behanceUrl,
+        figma: settings.figmaUrl,
     };
     
     Object.entries(socialLinks).forEach(([platform, url]) => {
