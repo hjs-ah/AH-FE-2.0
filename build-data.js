@@ -117,6 +117,7 @@ async function fetchSettings() {
 
     return {
       profileImageUrl: page.properties['Profile Image URL']?.url || '',
+      tagline: page.properties['Tagline']?.rich_text[0]?.plain_text || '',
       linkedinUrl: page.properties['LinkedIn URL']?.url || '',
       behanceUrl: page.properties['Behance URL']?.url || '',
       figmaUrl: page.properties['Figma URL']?.url || '',
