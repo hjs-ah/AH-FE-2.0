@@ -42,7 +42,7 @@ body {
     font-family: 'Space Mono', 'Courier New', monospace;
     background-color: var(--bg-page);
     color: var(--text-primary);
-    line-height: 1.6;
+    line-height: 1.2;
     transition: background-color 0.3s ease, color 0.3s ease;
     -webkit-font-smoothing: antialiased;
 }
@@ -172,7 +172,7 @@ body {
 
 .profile-image-wrapper {
     display: flex;
-    align-items: center;
+    align-items: right;
 }
 
 .profile-image {
