@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antone Holmes - Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="v2-styles.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" aria-label="Toggle theme">
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+        </button>
+
+        <!-- Left Sidebar Navigation -->
+        <nav class="sidebar-nav">
+            <div class="nav-header">
+                <span class="nav-title">EXPLORE</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active" data-view="home">Home</a></li>
+                <li><a href="#resume" class="nav-link" data-view="resume">Resume</a></li>
+                <li><a href="#creations" class="nav-link" data-view="creations">Creations</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header (Always Visible) -->
+            <header class="profile-header fade-in">
+                <div class="profile-image-wrapper">
+                    <img src="https://hjs-ah.github.io/AH-FE-2.0/ProHeadshot_web-copy.jpg" alt="Antone Holmes" class="profile-image">
+                </div>
+                <div class="profile-info">
+                    <h1 class="profile-name">Antone Holmes</h1>
+                    <p class="profile-tagline" id="profile-tagline">Teacher, Coach, & Writer</p>
+                    <div class="profile-location">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span>United States</span>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="https://medium.com/@antoneh" target="_blank" class="social-link" title="Medium">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/antoneholmes" target="_blank" class="social-link" title="LinkedIn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://behance.net/antoneholmes" target="_blank" class="social-link" title="Behance">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
+                        </svg>
+                    </a>
+                    <a href="https://figma.com/@antoneholmes" target="_blank" class="social-link" title="Figma">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0a4.489 4.489 0 0 1-4.49-4.49c0-2.476 2.014-4.49 4.49-4.49s4.49 2.014 4.49 4.49-2.014 4.49-4.49 4.49zm0-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019 3.019-1.355 3.019-3.019-1.355-3.019-3.019-3.019z"/>
+                        </svg>
+                    </a>
+                </div>
+            </header>
+
+            <!-- Dynamic Content Frame -->
+            <div id="content-frame" class="content-frame">
+                <!-- Home View (Default) -->
+                <div id="view-home" class="view-content active">
+                    <section class="content-section">
+                        <h2 class="section-label">Featured Publication</h2>
+                        <a href="https://www.amazon.com/dp/B0FH9T3QRJ" target="_blank" class="publication-card">
+                            <img src="https://hjs-ah.github.io/AH-FE-2.0/newman_thumb.jpg" alt="The New Man's Devotional" class="book-cover">
+                            <div class="publication-details">
+                                <h3>The New Man's Devotional</h3>
+                                <p class="edition">First Edition</p>
+                                <p class="quote">"If any man be in Christ, he is a new creature. Old things are passed away, behold, all things are become new." - 2 Corinthians 5:17</p>
+                                <span class="view-link">View on Amazon →</span>
+                            </div>
+                        </a>
+                    </section>
+
+                    <section class="content-section">
+                        <h2 class="section-label">My Writing</h2>
+                        <div id="medium-articles" class="articles-grid">
+                            <div class="loading">Loading articles...</div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2 class="section-label">Recent Creations</h2>
+                        <div id="gallery-grid" class="gallery-grid">
+                            <div class="loading">Loading creations...</div>
+                        </div>
+                    </section>
+
+                    <section class="content-section">
+                        <h2 class="section-label">What I'm Reading</h2>
+                        <div id="books-grid" class="books-grid">
+                            <div class="loading">Loading books...</div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Resume View -->
+                <div id="view-resume" class="view-content">
+                    <div class="resume-header">
+                        <h2 class="section-label">Resume</h2>
+                        <button class="download-btn" onclick="window.print()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" x2="12" y1="15" y2="3"></line>
+                            </svg>
+                            Download PDF
+                        </button>
+                    </div>
+                    <div class="resume-content">
+                        <!-- Resume content will go here -->
+                        <p class="placeholder-text">Resume content coming soon...</p>
+                    </div>
+                </div>
+
+                <!-- Creations View -->
+                <div id="view-creations" class="view-content">
+                    <h2 class="section-label">Creations & Projects</h2>
+                    <div class="creations-list">
+                        <!-- Projects will be loaded here -->
+                        <p class="placeholder-text">Projects showcase coming soon...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="site-footer">
+                <a href="#" id="admin-login" class="content-manager-link">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                    </svg>
+                    <span>Content Manager</span>
+                </a>
+                <p class="copyright">&copy; <span id="current-year"></span> Antone Holmes. All rights reserved.</p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal">
+        <button class="modal-close">&times;</button>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script src="v2-script.js"></script>
+</body>
+</html>
