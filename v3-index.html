@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Antone Holmes - Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="v3-styles.css">
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" aria-label="Toggle theme">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+        </svg>
+        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+    </button>
+
+    <div class="page-container">
+        <!-- Landing View -->
+        <div id="view-landing" class="view active">
+            <div class="landing-content">
+                <!-- Profile Section -->
+                <div class="profile-section fade-in">
+                    <img src="https://hjs-ah.github.io/AH-FE-2.0/ProHeadshot_web-copy.jpg" alt="Antone Holmes" class="profile-photo" id="profile-photo">
+                    <h1 class="profile-name" id="profile-name">Antone Holmes</h1>
+                    <p class="profile-tagline" id="profile-tagline">Teacher, Coach, & Writer</p>
+                </div>
+
+                <!-- Navigation Cards -->
+                <nav class="nav-cards fade-in">
+                    <a href="#case-studies" class="nav-card" data-view="case-studies">
+                        <div class="card-content">
+                            <div class="card-thumbnail">
+                                <img src="" alt="Case Studies" id="card-img-1">
+                            </div>
+                            <div class="card-text">
+                                <h2 id="card-title-1">Case Studies</h2>
+                                <p id="card-desc-1">Explore my work and project showcase</p>
+                            </div>
+                            <div class="card-arrow">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14"></path>
+                                    <path d="m12 5 7 7-7 7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="#resume" class="nav-card" data-view="resume">
+                        <div class="card-content">
+                            <div class="card-thumbnail">
+                                <img src="" alt="Resume" id="card-img-2">
+                            </div>
+                            <div class="card-text">
+                                <h2 id="card-title-2">Resume</h2>
+                                <p id="card-desc-2">View my professional experience</p>
+                            </div>
+                            <div class="card-arrow">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14"></path>
+                                    <path d="m12 5 7 7-7 7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="#community" class="nav-card" data-view="community">
+                        <div class="card-content">
+                            <div class="card-thumbnail">
+                                <img src="" alt="For the Community" id="card-img-3">
+                            </div>
+                            <div class="card-text">
+                                <h2 id="card-title-3">For the Community</h2>
+                                <p id="card-desc-3">Ministry and community initiatives</p>
+                            </div>
+                            <div class="card-arrow">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14"></path>
+                                    <path d="m12 5 7 7-7 7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                </nav>
+
+                <!-- Social Links -->
+                <div class="social-links fade-in">
+                    <a href="https://medium.com/@antoneh" target="_blank" class="social-link" title="Medium">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/antoneholmes" target="_blank" class="social-link" title="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://behance.net/antoneholmes" target="_blank" class="social-link" title="Behance">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
+                        </svg>
+                    </a>
+                    <a href="https://figma.com/@antoneholmes" target="_blank" class="social-link" title="Figma">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0a4.489 4.489 0 0 1-4.49-4.49c0-2.476 2.014-4.49 4.49-4.49s4.49 2.014 4.49 4.49-2.014 4.49-4.49 4.49zm0-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019 3.019-1.355 3.019-3.019-1.355-3.019-3.019-3.019z"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Footer -->
+                <footer class="landing-footer fade-in">
+                    <p>&copy; <span id="current-year"></span> Antone Holmes</p>
+                </footer>
+            </div>
+        </div>
+
+        <!-- Case Studies View -->
+        <div id="view-case-studies" class="view">
+            <button class="back-button" data-target="landing">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5"></path>
+                    <path d="m12 19-7-7 7-7"></path>
+                </svg>
+                <span>Back</span>
+            </button>
+            <div class="view-content">
+                <h1 class="view-title">Case Studies</h1>
+                <div class="projects-list">
+                    <p class="placeholder">Projects coming soon...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resume View -->
+        <div id="view-resume" class="view">
+            <button class="back-button" data-target="landing">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5"></path>
+                    <path d="m12 19-7-7 7-7"></path>
+                </svg>
+                <span>Back</span>
+            </button>
+            <div class="view-content">
+                <div class="resume-header">
+                    <h1 class="view-title">Resume</h1>
+                    <button class="download-btn" onclick="window.print()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" x2="12" y1="15" y2="3"></line>
+                        </svg>
+                        Download PDF
+                    </button>
+                </div>
+                <div class="resume-content">
+                    <p class="placeholder">Resume content coming soon...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Community View -->
+        <div id="view-community" class="view">
+            <button class="back-button" data-target="landing">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5"></path>
+                    <path d="m12 19-7-7 7-7"></path>
+                </svg>
+                <span>Back</span>
+            </button>
+            <div class="view-content">
+                <h1 class="view-title">For the Community</h1>
+                <div class="community-content">
+                    <p class="placeholder">Community initiatives coming soon...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="v3-script.js"></script>
+</body>
+</html>
