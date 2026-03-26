@@ -142,6 +142,22 @@ function loadBooks(books) {
 function loadSettings(settings) {
     console.log('🎯 Loading settings:', settings);
     
+    // Update name (with credentials)
+    if (settings.name) {
+        const nameElement = document.getElementById('profile-name');
+        if (nameElement) {
+            nameElement.textContent = settings.name;
+            console.log('✅ Name updated to:', settings.name);
+        }
+        
+        // Update page title
+        const pageTitle = document.getElementById('page-title');
+        if (pageTitle) {
+            pageTitle.textContent = `${settings.name} - Portfolio`;
+            console.log('✅ Page title updated');
+        }
+    }
+    
     // Update profile image if provided
     if (settings.profileImageUrl) {
         const profileImg = document.querySelector('.profile-image');
