@@ -124,7 +124,6 @@ async function fetchSettings() {
     console.log('📝 Tagline property from Notion:', JSON.stringify(taglineProp, null, 2));
     
     if (taglineProp) {
-      // Text property in Notion databases returns as rich_text array
       if (taglineProp.rich_text && taglineProp.rich_text.length > 0) {
         tagline = taglineProp.rich_text[0].plain_text;
         console.log('✅ Tagline extracted:', tagline);
@@ -135,9 +134,42 @@ async function fetchSettings() {
       console.log('❌ No Tagline property found in Notion');
     }
 
+    // Handle name with credentials (from Title property)
+    let name = '';
+    const nameProp = page.properties['Name'];
+    if (nameProp && nameProp.title && nameProp.title.length > 0) {
+      name = nameProp.title[0].plain_text;
+      console.log('✅ Name extracted:', name);
+    } else {
+      console.log('❌ No Name found in Title property');
+    }
+
+    // Extract card properties
+    const card1Title = page.properties['Card 1 Title']?.rich_text[0]?.plain_text || '';
+    const card1Description = page.properties['Card 1 Description']?.rich_text[0]?.plain_text || '';
+    const card1Image = page.properties['Card 1 Image']?.url || '';
+    
+    const card2Title = page.properties['Card 2 Title']?.rich_text[0]?.plain_text || '';
+    const card2Description = page.properties['Card 2 Description']?.rich_text[0]?.plain_text || '';
+    const card2Image = page.properties['Card 2 Image']?.url || '';
+    
+    const card3Title = page.properties['Card 3 Title']?.rich_text[0]?.plain_text || '';
+    const card3Description = page.properties['Card 3 Description']?.rich_text[0]?.plain_text || '';
+    const card3Image = page.properties['Card 3 Image']?.url || '';
+
     return {
+      name: name,
       profileImageUrl: page.properties['Profile Image URL']?.url || '',
       tagline: tagline,
+      card1Title: card1Title,
+      card1Description: card1Description,
+      card1Image: card1Image,
+      card2Title: card2Title,
+      card2Description: card2Description,
+      card2Image: card2Image,
+      card3Title: card3Title,
+      card3Description: card3Description,
+      card3Image: card3Image,
       linkedinUrl: page.properties['LinkedIn URL']?.url || '',
       behanceUrl: page.properties['Behance URL']?.url || '',
       figmaUrl: page.properties['Figma URL']?.url || '',
